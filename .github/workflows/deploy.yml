@@ -23,8 +23,7 @@
             dotnet publish ./TestCICD/TestCICD.csproj -c Release -o published --verbosity detailed
         - name: Deploy to IIS using msdeploy
           run: |
-            "C:\Program Files\IIS\Microsoft Web Deploy V3\msdeploy.exe" ^
-              -source:contentPath="published" ^
-              -dest:contentPath="Default Web Site/TestCICD",computerName="https://${{ secrets.IIS_HOST }}:8172/msdeploy.axd?site=Default Web Site",username="${{ secrets.IIS_USERNAME }}",password="${{ secrets.IIS_PASSWORD }}",authType="Basic" ^
-              -verb:sync ^
-              -allowUntrusted
+            "C:\Program Files\IIS\Microsoft Web Deploy V3\msdeploy.exe" `
+              -source:contentPath="published" `
+              -dest:contentPath="Default Web Site/TestCICD",computerName="https://${{ secrets.IIS_HOST }}:8172/msdeploy.axd?site=Default Web Site",username="${{ secrets.IIS_USERNAME }}",password="${{ secrets.IIS_PASSWORD }}",authType="Basic" `
+              -verb:sync -allowUntrusted
