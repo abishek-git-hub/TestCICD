@@ -21,13 +21,4 @@
           run: |
             dotnet restore ./TestCICD/TestCICD.csproj
             dotnet publish ./TestCICD/TestCICD.csproj -c Release -o published --verbosity detailed
-
-        - name: Deploy via WinRM
-          uses: gsoft-actions/iis-deploy@v1
-          with:
-            source-path: published
-            computer-name: http://20.204.113.67:5985/wsman
-            username: ${{ secrets.IIS_USERNAME }}
-            password: ${{ secrets.IIS_PASSWORD }}
-            site-name: "TestCICD"
-            app-path: "Default Web Site\\TestCICD"
+             
